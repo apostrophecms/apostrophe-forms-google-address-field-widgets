@@ -1,0 +1,23 @@
+{
+  "name": "apostrophe-forms-google-address-field-widgets",
+  "version": "1.0.0",
+  "description": "This module adds a Google-based input field validating addresses",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https@github.com:apostrophecms/apostrophe-forms-google-address-field-widgets.git"
+  },
+  "keywords": [
+    "apostrophecms",
+    "forms"
+  ],
+  "author": "Apostrophe Technologies",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/apostrophecms/apostrophe-forms-google-address-field-widgets/issues"
+  },
+  "homepage": "https://github.com/apostrophecms/apostrophe-forms-google-address-field-widgets#readme"
+}
