@@ -1,4 +1,3 @@
-
 This module adds a Google-based input field validating addresses. It is meant for use alongside the `apostrophe-forms` module.
 
 When using it, you must configure the `formWidgets` option to `apostrophe-forms` to include it, as well as all other form widgets you wish to use. See the `apostrophe-forms` documentation.
