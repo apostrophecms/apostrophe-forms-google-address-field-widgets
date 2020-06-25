@@ -6,7 +6,7 @@ module.exports = {
       name: 'googleApiKey',
       label: 'Google API key',
       type: 'string',
-      required: true,
+      required: true
     },
     {
       name: 'placeholder',
@@ -50,7 +50,7 @@ module.exports = {
       type: 'select',
       choices: [{
         value: '',
-        label: '---'
+        label: 'Default'
       }, {
         value: 'af',
         label: 'Afrikaans'
@@ -321,7 +321,7 @@ module.exports = {
       htmlHelp: '<a href="https://developers.google.com/places/web-service/autocomplete#place_types" target="_blank">More information here</a>',
       choices: [{
         value: '',
-        label: '---'
+        label: 'All'
       }, {
         value: 'geocode',
         label: 'Geocode'
@@ -352,24 +352,32 @@ module.exports = {
       }]
     }
   ],
-  arrangeFields: [
-    {
-      name: 'settings',
-      label: 'Field settings',
-      fields: [
-        'fieldLabel',
-        'fieldName',
-        'required',
-        'googleApiKey',
-        'placeholder',
-        'types',
-        'language',
-        'offset',
-        'origin',
-        'location',
-        'radius',
-        'strictBounds'
-      ]
-    }
-  ]
-}
+  beforeConstruct (self, options) {
+    options.arrangeFields = [
+      {
+        name: 'settings',
+        label: 'Basic settings',
+        fields: [
+          'fieldLabel',
+          'fieldName',
+          'required',
+          'googleApiKey',
+          'placeholder'
+        ]
+      },
+      {
+        name: 'advanced',
+        label: 'Advanced settings',
+        fields: [
+          'types',
+          'language',
+          'offset',
+          'origin',
+          'location',
+          'radius',
+          'strictBounds'
+        ]
+      }
+    ].concat(options.arrangeFields || []);
+  }
+};

@@ -5,3 +5,6 @@ node_modules
 test/node_modules
 # ignore vim swp files
 .*sw*
+
+npm-debug.log
+.DS_Store

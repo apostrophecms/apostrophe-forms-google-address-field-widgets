@@ -14,8 +14,8 @@ modules: {
     }
   },
   'apostrophe-forms-widgets': {},
-  'apostrophe-forms-google-address-field-widgets'
+  'apostrophe-forms-google-address-field-widgets': {}
 }
 ```
 
-The user will need a valid Google API key for the suggestions displayed by Google to work.
+The user will need a valid Google API key for the suggestions displayed by Google to work as stated in Google Maps Platform documentation for Places API: [https://developers.google.com/places/web-service/autocomplete](https://developers.google.com/places/web-service/autocomplete) A premium plan is needed to obtain a key from Google.
