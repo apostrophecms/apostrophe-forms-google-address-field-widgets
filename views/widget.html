@@ -3,18 +3,6 @@
 {% set widget = data.widget %}
 {% set classPrefix = data.widget.classPrefix %}
 
-{% if widget.googleApiKey %}
-  <script src="https://maps.google.com/maps/api/js?key={{ widget.googleApiKey }}&libraries=places
-    {%- if widget.offset -%} &offset={{ widget.offset }} {%- endif -%}
-    {%- if widget.origin -%} &origin={{ widget.origin }} {%- endif -%}
-    {%- if widget.location -%} &location={{ widget.location }}{%- endif -%}
-    {%- if widget.radius -%} &radius={{ widget.radius }}{%- endif -%}
-    {%- if widget.strictBounds -%} &strictbounds={{ widget.strictBounds }}{%- endif -%}
-    {%- if widget.language -%} &language={{ widget.language }}{%- endif -%}
-    {%- if widget.types -%} &types={{ widget.types }}{%- endif -%}
-    " type="text/javascript" defer></script>
-{% endif %}
-
 <label for="{{ id }}" class="apos-forms-label {{ classPrefix + '__label' if classPrefix }}">
   {{ widget.fieldLabel}}
   {% if not widget.required %} {{ __('(Optional)') }}{% endif %}
