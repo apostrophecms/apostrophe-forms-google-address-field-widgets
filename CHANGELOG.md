@@ -2,4 +2,4 @@
 
 ## 1.0.0
 
-First version with advanced options from Google Places API documentation
+First version with advanced options from Google Maps API documentation

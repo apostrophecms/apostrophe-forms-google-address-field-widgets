@@ -18,4 +18,4 @@ modules: {
 }
 ```
 
-The user will need a valid Google API key for the suggestions displayed by Google to work as stated in Google Maps Platform documentation for Places API: [https://developers.google.com/places/web-service/autocomplete](https://developers.google.com/places/web-service/autocomplete) A premium plan is needed to obtain a key from Google.
+The user will need a valid Google API key for the suggestions displayed by Google to work as stated in Google Maps Platform documentation: [https://developers.google.com/maps/documentation/javascript/places-autocomplete](https://developers.google.com/maps/documentation/javascript/places-autocomplete). You must connect a billing account to the Google API console project.
