@@ -14,7 +14,9 @@ modules: {
     }
   },
   'apostrophe-forms-widgets': {},
-  'apostrophe-forms-google-address-field-widgets': {}
+  'apostrophe-forms-google-address-field-widgets': {
+    googleApiKey: 'validGoogleApiKeyHere' // mandatory
+  }
 }
 ```
 
