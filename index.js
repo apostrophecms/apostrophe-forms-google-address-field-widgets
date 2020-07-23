@@ -161,7 +161,8 @@ module.exports = {
             value: 'postal_town',
             label: 'Postal Code (for UK and Sweden)'
           }
-        ]
+        ],
+        def: ['street_number', 'route', 'locality', 'country', 'postal_code']
       }
     ].concat(options.addFields || []);
 
