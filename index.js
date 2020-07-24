@@ -126,43 +126,53 @@ module.exports = {
       }, {
         name: 'splitAddress',
         label: 'Split Address',
-        type: 'checkboxes',
+        type: 'array',
         help: 'Optional: choose fields to split address to',
-        choices: [
+        titleField: 'addressPart',
+        schema: [
           {
-            value: 'street_number',
-            label: 'Street Number'
+            name: 'addressPart',
+            label: 'Address Part',
+            type: 'select',
+            choices: [{
+              value: 'street_number',
+              label: 'Street Number'
+            },
+            {
+              value: 'route',
+              label: 'Route'
+            },
+            {
+              value: 'locality',
+              label: 'City'
+            },
+            {
+              value: 'sublocality_level_1',
+              label: 'City (for NYC area)'
+            },
+            {
+              value: 'administrative_area_level_1',
+              label: 'State'
+            },
+            {
+              value: 'country',
+              label: 'Country'
+            },
+            {
+              value: 'postal_code',
+              label: 'Postal Code'
+            },
+            {
+              value: 'postal_town',
+              label: 'Postal Code (for UK and Sweden)'
+            }]
           },
           {
-            value: 'route',
-            label: 'Route'
-          },
-          {
-            value: 'locality',
-            label: 'City'
-          },
-          {
-            value: 'sublocality_level_1',
-            label: 'City (for NYC area)'
-          },
-          {
-            value: 'administrative_area_level_1',
-            label: 'State'
-          },
-          {
-            value: 'country',
-            label: 'Country'
-          },
-          {
-            value: 'postal_code',
-            label: 'Postal Code'
-          },
-          {
-            value: 'postal_town',
-            label: 'Postal Code (for UK and Sweden)'
+            name: 'label',
+            label: 'Label',
+            type: 'string'
           }
         ],
-        def: ['street_number', 'route', 'locality', 'country', 'postal_code']
       }
     ].concat(options.addFields || []);
 
@@ -202,6 +212,16 @@ module.exports = {
     self.on('apostrophe-pages:beforeSend', 'addGoogleApiKey');
     self.addGoogleApiKey = function (req) {
       req.data.googleApiKey = options.googleApiKey;
+    };
+
+    self.sanitizeFormField = function (req, form, widget, input, output) {
+      if (widget.splitAddress && widget.splitAddress.length) {
+        for (const address of widget.splitAddress) {
+          output[address.addressPart] = self.apos.launder.string(input[address.addressPart]);
+        }
+      } else {
+        output[widget.fieldName] = self.apos.launder.string(input[widget.fieldName]);
+      }
     };
   }
 };

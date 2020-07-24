@@ -20,10 +20,14 @@
 {% if widget.splitAddress %}
   {% for field in widget.splitAddress %}
     </br>
-    <input class="apos-forms-input {{ classPrefix + '__input' if classPrefix }} apos-forms-input-{{ field }}"
+    <label for="{{ field.id }}" class="apos-forms-label {{ classPrefix + '__label' if classPrefix }}">
+      {{ field.label }}
+      <span class="apos-forms-label-message {{ classPrefix + '__label-message' if classPrefix }}" data-apos-input-message="{{ field.addressPart }}" hidden></span>
+    </label>
+    <input class="apos-forms-input {{ classPrefix + '__input' if classPrefix }} apos-forms-input-{{ field.addressPart }}"
       type="string"
-      disabled="true"
-      name="{{ field }}"
+      id="{{ field.id }}"
+      name="{{ field.addressPart }}"
     />
   {% endfor %}
 {% endif %}

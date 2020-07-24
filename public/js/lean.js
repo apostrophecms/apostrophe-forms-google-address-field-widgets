@@ -1,4 +1,10 @@
 apos.utils.widgetPlayers['apostrophe-forms-google-address-field'] = function(el, widget, options) {
+  var formsWidget = apos.utils.closest(el, '[data-apos-widget="apostrophe-forms"]');
+  if (!formsWidget) {
+    // Editing the form in the piece modal, it is not active for submissions
+    return;
+  }
+
   var googleApiKey = el.querySelector('[data-apos-forms-google-api-key]').dataset.aposFormsGoogleApiKey;
   if (googleApiKey) {
     var scriptSrc = 'https://maps.googleapis.com/maps/api/js?key=' + googleApiKey + '&libraries=places';
@@ -43,27 +49,43 @@ apos.utils.widgetPlayers['apostrophe-forms-google-address-field'] = function(el,
       var autocomplete = new google.maps.places.Autocomplete(input, searchOptions); // eslint-disable-line no-new
       autocomplete.setFields(['address_component']);
 
-      if (widget.splitAddress) {
+      if (widget.splitAddress && widget.splitAddress.length) {
+        var inputNames;
+
         autocomplete.addListener('place_changed', function () {
+          inputNames = {};
           var split = widget.splitAddress;
           var place = autocomplete.getPlace();
 
           if (place.address_components) {
             for (var i = 0; i < split.length; i++) {
-              var element = el.querySelector('.apos-forms-input-' + split[i]);
+              var element = el.querySelector('.apos-forms-input-' + split[i].addressPart);
               element.value = '';
 
               // Get each component of the address from the place details,
               // and then fill-in the corresponding field on the form.
               for (var j = 0; j < place.address_components.length; j++) {
                 var addressType = place.address_components[j].types[0];
-                if (split[i] === addressType) {
+                if (split[i].addressPart === addressType) {
                   element.value = place.address_components[j].long_name;
+                  var name = element.getAttribute('name');
+                  inputNames[name] = element.value;
                   break;
                 }
               }
             }
           }
+        });
+
+        formsWidget.addEventListener('apos-forms-validate', function(event) {
+          for (var key in inputNames) {
+            event.input[key] = inputNames[key];
+          }
+        });
+      } else {
+        var inputName = input.getAttribute('name');
+        formsWidget.addEventListener('apos-forms-validate', function(event) {
+          event.input[inputName] = input.value;
         });
       }
     });

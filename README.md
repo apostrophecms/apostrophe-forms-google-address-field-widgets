@@ -22,19 +22,51 @@ modules: {
 
 The user will need a valid Google API key for the suggestions displayed by Google to work as stated in Google Maps Platform documentation: [https://developers.google.com/maps/documentation/javascript/places-autocomplete](https://developers.google.com/maps/documentation/javascript/places-autocomplete). You must connect a billing account to the Google API console project.
 
-## Advanced settings
-
-By default, the response from Google will be split into 3 fields: street address, route and city. If you don't need this, you can uncheck the boxes in "Advanced settings / Split Address".
-
-Split address demo:
-
-![](./assets/split.gif)
-
-Basic demo:
+Default rendering:
 
 ![](./assets/basic.gif)
 
-Other settings can restrict the number of results
+When submitted, the form's output will contain the input's name and value.
+For example, if the input's name is `address`, the above example would output:
+
+```js
+{
+  address: 'Tour Eiffel, Avenue Anatole France, Paris, France'
+}
+```
+
+
+## Advanced settings
+
+The number of results can be restricted
 - to a type (addresses, regions, establishments, ...)
 - to a certain area with coordinates
 - to countries (5 at max due to Google policy)
+
+The address can also be split into multiple fields, as allowed by Google. The current list of choices is the following:
+
+![](./assets/splitaddress.png)
+
+Any number of fields can be added and the fields' order can be rearranged.
+
+Rendering example of the above configuration:
+
+![](./assets/split.gif)
+
+When submitted, the form's output will contain the fields names and values (not the input's name).
+For example, the above example would output:
+
+```js
+{
+  street_number: '5',
+  route: 'Avenue Anatole France',
+  locality: 'Paris',
+  postal_code: '75007',
+  administrative_area_level_1: 'Île-de-France',
+  country: 'France'
+}
+```
+
+The object's keys come from the package configuration and are the same as Google.
+
+
