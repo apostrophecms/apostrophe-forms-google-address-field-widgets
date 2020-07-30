@@ -126,53 +126,57 @@ module.exports = {
       }, {
         name: 'splitAddress',
         label: 'Split Address',
-        type: 'array',
-        help: 'Optional: choose fields to split address to',
-        titleField: 'addressPart',
-        schema: [
+        type: 'boolean',
+        choices: [
           {
-            name: 'addressPart',
-            label: 'Address Part',
-            type: 'select',
-            choices: [{
-              value: 'street_number',
-              label: 'Street Number'
-            },
-            {
-              value: 'route',
-              label: 'Route'
-            },
-            {
-              value: 'locality',
-              label: 'City'
-            },
-            {
-              value: 'sublocality_level_1',
-              label: 'City (for NYC area)'
-            },
-            {
-              value: 'administrative_area_level_1',
-              label: 'State'
-            },
-            {
-              value: 'country',
-              label: 'Country'
-            },
-            {
-              value: 'postal_code',
-              label: 'Postal Code'
-            },
-            {
-              value: 'postal_town',
-              label: 'Postal Code (for UK and Sweden)'
-            }]
-          },
-          {
-            name: 'label',
-            label: 'Label',
-            type: 'string'
+            value: true,
+            showFields: ['addressParts', 'displaySplitAddress']
           }
-        ],
+        ]
+      }, {
+        name: 'addressParts',
+        label: 'Address Parts',
+        type: 'checkboxes',
+        help: 'Optional: choose fields to split address to',
+        choices: [{
+          value: 'street_number',
+          label: 'Street Number'
+        },
+        {
+          value: 'route',
+          label: 'Route'
+        },
+        {
+          value: 'locality',
+          label: 'City'
+        },
+        {
+          value: 'sublocality_level_1',
+          label: 'City (for NYC area)'
+        },
+        {
+          value: 'administrative_area_level_1',
+          label: 'State'
+        },
+        {
+          value: 'postal_code',
+          label: 'Postal Code'
+        },
+        {
+          value: 'postal_town',
+          label: 'Postal Code (for UK and Sweden)'
+        },
+        {
+          value: 'country',
+          label: 'Country'
+        }],
+        def: ['street_number', 'route', 'locality', 'administrative_area_level_1', 'postal_code', 'country']
+      }, {
+        name: 'displaySplitAddress',
+        label: 'Display Split Address',
+        help: 'Display broken out fields in the form or not. Fields will still be saved in the database.',
+        type: 'boolean',
+        def: true
       }
     ].concat(options.addFields || []);
 
@@ -203,7 +207,9 @@ module.exports = {
           'southWestLongitude',
           'strictBounds',
           'countries',
-          'splitAddress'
+          'splitAddress',
+          'addressParts',
+          'displaySplitAddress'
         ]
       }
     ].concat(options.arrangeFields || []);
@@ -215,9 +221,9 @@ module.exports = {
     };
 
     self.sanitizeFormField = function (req, form, widget, input, output) {
-      if (widget.splitAddress && widget.splitAddress.length) {
-        for (const address of widget.splitAddress) {
-          output[address.addressPart] = self.apos.launder.string(input[address.addressPart]);
+      if (widget.splitAddress && widget.addressParts && widget.addressParts.length) {
+        for (const addressPart of widget.addressParts) {
+          output[`${widget.fieldName}-${addressPart}`] = self.apos.launder.string(input[`${widget.fieldName}-${addressPart}`]);
         }
       } else {
         output[widget.fieldName] = self.apos.launder.string(input[widget.fieldName]);

@@ -49,24 +49,24 @@ apos.utils.widgetPlayers['apostrophe-forms-google-address-field'] = function(el,
       var autocomplete = new google.maps.places.Autocomplete(input, searchOptions); // eslint-disable-line no-new
       autocomplete.setFields(['address_component']);
 
-      if (widget.splitAddress && widget.splitAddress.length) {
+      if (widget.splitAddress && widget.addressParts && widget.addressParts.length) {
         var inputNames;
 
         autocomplete.addListener('place_changed', function () {
           inputNames = {};
-          var split = widget.splitAddress;
+          var split = widget.addressParts;
           var place = autocomplete.getPlace();
 
           if (place.address_components) {
             for (var i = 0; i < split.length; i++) {
-              var element = el.querySelector('.apos-forms-input-' + split[i].addressPart);
+              var element = el.querySelector('.apos-forms-input-' + split[i]);
               element.value = '';
 
               // Get each component of the address from the place details,
               // and then fill-in the corresponding field on the form.
               for (var j = 0; j < place.address_components.length; j++) {
                 var addressType = place.address_components[j].types[0];
-                if (split[i].addressPart === addressType) {
+                if (split[i] === addressType) {
                   element.value = place.address_components[j].long_name;
                   var name = element.getAttribute('name');
                   inputNames[name] = element.value;
