@@ -126,7 +126,7 @@ For example, if there are 2 fields (one standard named `address`, the other one 
 
 ### Labels
 
-In "split" mode, if the broken out fields are displayed, labels will be added to the form. They will be the technical fields (`street_number`, `administrative_area_level_1`, ...).
+In "split" mode, if the broken out fields are displayed, labels will be added to the form. They will contain technical values (`street_number`, `administrative_area_level_1`, ...).
 
 In order to display them differently, edit the JSON files in the folder containing the i18n translations (`locales` at the project level by default).
 
