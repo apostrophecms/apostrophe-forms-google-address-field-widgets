@@ -9,7 +9,8 @@
   <span class="apos-forms-label-message {{ classPrefix + '__label-message' if classPrefix }}" data-apos-input-message="{{ widget.fieldName }}" hidden></span>
 </label>
 
-<input class="apos-forms-input {{ classPrefix + '__input' if classPrefix }} apos-forms-input-{{ addressPart }}"
+<input class="apos-forms-input {{ classPrefix + '__input' if classPrefix }}"
+  data-apos-forms-input-{{ widget.fieldName }}
   type="string"
   id="{{ id }}" name="{{ widget.fieldName }}"
   placeholder="{{ widget.placeholder }}"
@@ -24,7 +25,8 @@
       {{ __(addressPart) }}
       <span class="apos-forms-label-message {{ classPrefix + '__label-message' if classPrefix }}" data-apos-input-message="{{ addressPart }}" hidden></span>
     </label>
-    <input class="apos-forms-input {{ classPrefix + '__input' if classPrefix }} apos-forms-input-{{ addressPart }}"
+    <input class="apos-forms-input {{ classPrefix + '__input' if classPrefix }}"
+      data-apos-forms-input-{{ addressPart }}
       type="string"
       id="{{ widget.fieldName }}-{{ addressPart }}"
       name="{{ widget.fieldName }}-{{ addressPart }}"

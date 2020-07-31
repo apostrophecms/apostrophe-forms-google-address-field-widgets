@@ -132,7 +132,8 @@ module.exports = {
             value: true,
             showFields: ['addressParts', 'displaySplitAddress']
           }
-        ]
+        ],
+        def: false
       }, {
         name: 'addressParts',
         label: 'Address Parts',
@@ -225,9 +226,8 @@ module.exports = {
         for (const addressPart of widget.addressParts) {
           output[`${widget.fieldName}-${addressPart}`] = self.apos.launder.string(input[`${widget.fieldName}-${addressPart}`]);
         }
-      } else {
-        output[widget.fieldName] = self.apos.launder.string(input[widget.fieldName]);
       }
+      output[widget.fieldName] = self.apos.launder.string(input[widget.fieldName]);
     };
   }
 };

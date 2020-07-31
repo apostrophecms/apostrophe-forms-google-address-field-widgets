@@ -97,6 +97,7 @@ For example, if the field name is `address`; the above example would output:
 
 ```js
 {
+  address: 'Tour Eiffel, Avenue Anatole France, Paris, France',
   'address-street_number': '5',
   'address-route': 'Avenue Anatole France',
   'address-locality': 'Paris',
@@ -117,6 +118,7 @@ For example, if there are 2 fields (one standard named `address`, the other one 
 ```js
 {
   address: 'Tour Eiffel, Avenue Anatole France, Paris, France',
+  'address-2': 'Rue de Rivoli, Paris, France',
   'address-2-route': 'Rue de Rivoli',
   'address-2-locality': 'Paris',
   'address-2-administrative_area_level_1': 'Île-de-France',
