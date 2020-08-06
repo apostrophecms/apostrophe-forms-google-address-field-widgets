@@ -83,7 +83,8 @@ apos.utils.widgetPlayers['apostrophe-forms-google-address-field'] = function(el,
 
       formsWidget.addEventListener('apos-forms-validate', function(event) {
         for (var key in inputNames) {
-          event.input[key] = inputNames[key];
+          var addressPartInput = el.querySelector('input[name=' + key + ']');
+          event.input[key] = addressPartInput.value;
         }
       });
     }
