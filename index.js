@@ -177,7 +177,7 @@ module.exports = {
         label: 'Display Split Address',
         help: 'Display broken out fields in the form or not. Fields will still be saved in the database.',
         type: 'boolean',
-        def: true
+        def: false
       }
     ].concat(options.addFields || []);
 
