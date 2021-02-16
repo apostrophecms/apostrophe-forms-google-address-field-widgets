@@ -1,5 +1,9 @@
 # Versions
 
+## 2.0.1 - 02-17-2021
+
+- Fixed a wrong dependency to lodash
+
 ## 2.0.0 - 08-12-2020
 
 - Replace schema field "googleApiKey" by project-level option "googleApiKey"

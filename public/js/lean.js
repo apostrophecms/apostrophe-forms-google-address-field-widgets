@@ -23,7 +23,7 @@ apos.utils.widgetPlayers['apostrophe-forms-google-address-field'] = function(el,
   input.addEventListener('input', function () {
     var google = window.google;
 
-    var countries = _.map(widget.countries, function (countryObject) {
+    var countries = widget.countries.map(function (countryObject) {
       return countryObject.country;
     });
 
