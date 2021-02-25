@@ -1,6 +1,6 @@
 {
   "name": "apostrophe-forms-google-address-field-widgets",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "This module adds a Google-based input field validating addresses",
   "main": "index.js",
   "scripts": {
