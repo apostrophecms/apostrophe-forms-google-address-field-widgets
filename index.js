@@ -130,16 +130,172 @@ module.exports = {
         choices: [
           {
             value: true,
-            showFields: ['addressParts', 'displaySplitAddress']
+            showFields: [ 'addressParts', 'displaySplitAddress' ]
           }
         ],
         def: false
-      }, {
+      },
+
+      // {
+      //   name: 'addressPartss',
+      //   label: 'Address Parts',
+      //   type: 'object',
+      //   help: 'Optional: choose fields to split address to',
+      //   schema: [
+      //     {
+      //       name: 'street_number',
+      //       label: 'Street Number',
+      //       type: 'object',
+      //       schema: [
+      //         {
+      //           label: 'Street Number Label',
+      //           name: 'label',
+      //           type: 'string'
+      //         },
+      //         {
+      //           label: 'Split Street Number',
+      //           name: 'splitted',
+      //           type: 'boolean',
+      //           def: true
+      //         }
+      //       ]
+      //     },
+      //     {
+      //       name: 'route',
+      //       label: 'Route',
+      //       type: 'object',
+      //       schema: [
+      //         {
+      //           label: 'Route Label',
+      //           name: 'label',
+      //           type: 'string'
+      //         },
+      //         {
+      //           label: 'Split Route',
+      //           name: 'splitted',
+      //           type: 'boolean',
+      //           def: true
+      //         }
+      //       ]
+      //     },
+      //     {
+      //       name: 'locality',
+      //       label: 'City',
+      //       type: 'object',
+      //       schema: [
+      //         {
+      //           label: 'City Label',
+      //           name: 'label',
+      //           type: 'string'
+      //         },
+      //         {
+      //           label: 'Split City',
+      //           name: 'splitted',
+      //           type: 'boolean',
+      //           def: true
+      //         }
+      //       ]
+      //     },
+      //     {
+      //       name: 'sublocality_level_1',
+      //       label: 'City (for NYC area)',
+      //       type: 'object',
+      //       schema: [
+      //         {
+      //           label: 'City Label (for NYC area)',
+      //           name: 'label',
+      //           type: 'string'
+      //         },
+      //         {
+      //           label: 'Split City (for NYC area)',
+      //           name: 'splitted',
+      //           type: 'boolean',
+      //           def: false
+      //         }
+      //       ]
+      //     },
+      //     {
+      //       name: 'administrative_area_level_1',
+      //       label: 'State',
+      //       type: 'object',
+      //       schema: [
+      //         {
+      //           label: 'State Label',
+      //           name: 'label',
+      //           type: 'string'
+      //         },
+      //         {
+      //           label: 'Split State',
+      //           name: 'splitted',
+      //           type: 'boolean',
+      //           def: true
+      //         }
+      //       ]
+      //     },
+      //     {
+      //       name: 'postal_code',
+      //       label: 'Postal Code',
+      //       type: 'object',
+      //       schema: [
+      //         {
+      //           label: 'Postal Code Label',
+      //           name: 'label',
+      //           type: 'string'
+      //         },
+      //         {
+      //           label: 'Split Postal Code',
+      //           name: 'splitted',
+      //           type: 'boolean',
+      //           def: true
+      //         }
+      //       ]
+      //     },
+      //     {
+      //       name: 'postal_town',
+      //       label: 'Postal Code (for UK and Sweden)',
+      //       type: 'object',
+      //       schema: [
+      //         {
+      //           label: 'Postal code Label (for UK and Sweden)',
+      //           name: 'label',
+      //           type: 'string'
+      //         },
+      //         {
+      //           label: 'Split Postal Code (for UK and Sweden)',
+      //           name: 'splitted',
+      //           type: 'boolean',
+      //           def: false
+      //         }
+      //       ]
+      //     },
+      //     {
+      //       name: 'country',
+      //       label: 'Country',
+      //       type: 'object',
+      //       schema: [
+      //         {
+      //           label: 'Country Label',
+      //           name: 'label',
+      //           type: 'string'
+      //         },
+      //         {
+      //           label: 'Split Country',
+      //           name: 'splitted',
+      //           type: 'boolean',
+      //           def: true
+      //         }
+      //       ]
+      //     }
+
+      //   ]
+      // },
+
+      {
         name: 'addressParts',
         label: 'Address Parts',
         type: 'checkboxes',
         help: 'Optional: choose fields to split address to',
-        choices: [{
+        choices: [ {
           value: 'street_number',
           label: 'Street Number'
         },
@@ -170,9 +326,10 @@ module.exports = {
         {
           value: 'country',
           label: 'Country'
-        }],
-        def: ['street_number', 'route', 'locality', 'administrative_area_level_1', 'postal_code', 'country']
-      }, {
+        } ],
+        def: [ 'street_number', 'route', 'locality', 'administrative_area_level_1', 'postal_code', 'country' ]
+      },
+      {
         name: 'displaySplitAddress',
         label: 'Display Split Address',
         help: 'Display broken out fields in the form or not. Fields will still be saved in the database.',
