@@ -19,20 +19,32 @@
 />
 
 {% if widget.splitAddress and widget.addressParts %}
-  {% for addressPart in widget.addressParts %}
+  {% for addressPart, infos in widget.addressParts %}
+
     {%- if widget.displaySplitAddress %} </br> {%- endif %}
-    <label for="{{ addressPart }}" class="apos-forms-label {{ classPrefix + '__label' if classPrefix }}" {%- if not widget.displaySplitAddress %} style="display: none;" {%- endif %}>
-      {{ __(addressPart) }}
-      <span class="apos-forms-label-message {{ classPrefix + '__label-message' if classPrefix }}" data-apos-input-message="{{ addressPart }}" hidden></span>
-    </label>
-    <input class="apos-forms-input {{ classPrefix + '__input' if classPrefix }}"
-      data-apos-forms-input-{{ addressPart }}
-      type="string"
-      id="{{ widget.fieldName }}-{{ addressPart }}"
-      name="{{ widget.fieldName }}-{{ addressPart }}"
-      {%- if not widget.displaySplitAddress %} style="display: none;" {%- endif %}
-      disabled
-    />
+    {% if infos.splitted %}
+      <label
+        for="{{ addressPart }}"
+        class="apos-forms-label {{ classPrefix + '__label' if classPrefix }}"
+        {%- if not widget.displaySplitAddress %}
+          style="display: none;"
+        {%- endif %}>
+          {{ infos.label }}
+        <span
+          class="apos-forms-label-message {{ classPrefix + '__label-message' if classPrefix }}"
+          data-apos-input-message="{{ addressPart }}"
+          hidden
+        ></span>
+      </label>
+      <input class="apos-forms-input {{ classPrefix + '__input' if classPrefix }}"
+        data-apos-forms-input-{{ addressPart }}
+        type="string"
+        id="{{ widget.fieldName }}-{{ addressPart }}"
+        name="{{ widget.fieldName }}-{{ addressPart }}"
+        {%- if not widget.displaySplitAddress %} style="display: none;" {%- endif %}
+        disabled
+      />
+    {% endif %}
   {% endfor %}
 {% endif %}
 
