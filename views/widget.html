@@ -21,8 +21,8 @@
 {% if widget.splitAddress and widget.addressParts %}
   {% for addressPart, infos in widget.addressParts %}
 
-    {%- if widget.displaySplitAddress %} </br> {%- endif %}
     {% if infos.splitted %}
+    {%- if widget.displaySplitAddress %} </br> {%- endif %}
       <label
         for="{{ addressPart }}"
         class="apos-forms-label {{ classPrefix + '__label' if classPrefix }}"
