@@ -1,5 +1,9 @@
 # Versions
 
+## 3.0.0 - 06-07-2021
+
+- Adds labels to splitted address fields
+
 ## 2.0.1 - 02-17-2021
 
 - Fixed a wrong dependency to lodash
