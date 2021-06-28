@@ -32,7 +32,7 @@ apos.utils.widgetPlayers['apostrophe-forms-google-address-field'] = function(el,
     };
 
     if (widget.types) {
-      searchOptions.types = [widget.types];
+      searchOptions.types = [ widget.types ];
     }
 
     if (widget.origin) {
@@ -51,26 +51,32 @@ apos.utils.widgetPlayers['apostrophe-forms-google-address-field'] = function(el,
     }
 
     var autocomplete = new google.maps.places.Autocomplete(input, searchOptions); // eslint-disable-line no-new
-    autocomplete.setFields(['address_component']);
+    autocomplete.setFields([ 'address_component' ]);
 
-    if (widget.splitAddress && widget.addressParts && widget.addressParts.length) {
+    var addressParts = Object.keys(widget.addressParts || {});
+
+    if (widget.splitAddress && addressParts.length) {
       var inputNames;
 
       autocomplete.addListener('place_changed', function () {
         inputNames = {};
-        var split = widget.addressParts;
         var place = autocomplete.getPlace();
 
         if (place.address_components) {
-          for (var i = 0; i < split.length; i++) {
-            var element = el.querySelector('[data-apos-forms-input-' + split[i] + ']');
+          for (var i = 0; i < addressParts.length; i++) {
+            var element = el.querySelector('[data-apos-forms-input-' + addressParts[i] + ']');
+
+            if (!element) {
+              continue;
+            }
+
             element.value = '';
 
             // Get each component of the address from the place details,
             // and then fill-in the corresponding field on the form.
             for (var j = 0; j < place.address_components.length; j++) {
               var addressType = place.address_components[j].types[0];
-              if (split[i] === addressType) {
+              if (addressParts[i] === addressType) {
                 element.value = place.address_components[j].long_name;
                 var name = element.getAttribute('name');
                 inputNames[name] = element.value;
