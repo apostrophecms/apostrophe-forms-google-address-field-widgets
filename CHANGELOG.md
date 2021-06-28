@@ -2,7 +2,7 @@
 
 ## 3.0.1 - 06-28-2021
 
-- Fixes address parts inputs not autofilled
+- Fixes address parts inputs not auto filled
 
 ## 3.0.0 - 06-07-2021
 
