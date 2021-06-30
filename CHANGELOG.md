@@ -1,6 +1,6 @@
 # Versions
 
-## 3.0.1 - 06-28-2021
+## 3.0.1 - 06-30-2021
 
 - Fixes address parts inputs not auto filled
 
