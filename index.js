@@ -12,11 +12,6 @@ module.exports = {
   },
 
   construct (self, options) {
-    self.on('apostrophe-pages:beforeSend', 'addGoogleApiKey');
-    self.addGoogleApiKey = function (req) {
-      req.data.googleApiKey = options.googleApiKey;
-    };
-
     self.sanitizeFormField = function (req, form, widget, input, output) {
       const parts = Object.keys(widget.addressParts);
       if (widget.splitAddress && parts && parts.length) {
