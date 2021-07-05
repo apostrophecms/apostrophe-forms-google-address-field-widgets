@@ -4,23 +4,26 @@ apos.utils.widgetPlayers['apostrophe-forms-google-address-field'] = function(el,
     // Editing the form in the piece modal, it is not active for submissions
     return;
   }
-
   var googleApiKey = el.querySelector('[data-apos-forms-google-api-key]').dataset.aposFormsGoogleApiKey;
+
   if (!googleApiKey) {
     // eslint-disable-next-line no-console
     console.error('apostrophe-forms-google-address-field-widgets error: missing Google API key');
+    return;
   }
 
   var scriptSrc = 'https://maps.googleapis.com/maps/api/js?key=' + googleApiKey + '&libraries=places';
   var alreadyLoaded = document.querySelector('script[src="' + scriptSrc + '"]');
+
   if (!alreadyLoaded) {
     var googleScript = document.createElement('script');
     googleScript.setAttribute('src', scriptSrc);
+    googleScript.onload = googleScriptLoaded;
     document.head.appendChild(googleScript);
   }
 
-  var input = el.querySelector('input[name=' + widget.fieldName + ']');
-  input.addEventListener('input', function () {
+  function googleScriptLoaded () {
+    var input = el.querySelector('input[name=' + widget.fieldName + ']');
     var google = window.google;
 
     var countries = widget.countries.map(function (countryObject) {
@@ -99,5 +102,5 @@ apos.utils.widgetPlayers['apostrophe-forms-google-address-field'] = function(el,
     formsWidget.addEventListener('apos-forms-validate', function(event) {
       event.input[inputName] = input.value;
     });
-  });
+  }
 };
