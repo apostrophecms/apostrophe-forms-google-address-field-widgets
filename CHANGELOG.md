@@ -1,5 +1,10 @@
 # Versions
 
+## Unreleased
+
+- Fixes large amount of google requests when typing an address
+- Allows to set splitted address parts fields editable or disabled
+
 ## 3.0.1 - 06-30-2021
 
 - Fixes address parts inputs not auto filled
