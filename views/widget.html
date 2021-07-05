@@ -20,7 +20,6 @@
 
 {% if widget.splitAddress and widget.addressParts %}
   {% for addressPart, infos in widget.addressParts %}
-
     {% if infos.splitted %}
     {%- if widget.displaySplitAddress %} </br> {%- endif %}
       <label
@@ -42,7 +41,7 @@
         id="{{ widget.fieldName }}-{{ addressPart }}"
         name="{{ widget.fieldName }}-{{ addressPart }}"
         {%- if not widget.displaySplitAddress %} style="display: none;" {%- endif %}
-        disabled
+        {%- if infos.disabled %} disabled {%- endif %}
       />
     {% endif %}
   {% endfor %}
