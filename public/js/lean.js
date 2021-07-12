@@ -1,5 +1,6 @@
 apos.utils.widgetPlayers['apostrophe-forms-google-address-field'] = function(el, widget, options) {
   var formsWidget = apos.utils.closest(el, '[data-apos-widget="apostrophe-forms"]');
+
   if (!formsWidget) {
     // Editing the form in the piece modal, it is not active for submissions
     return;
@@ -15,15 +16,18 @@ apos.utils.widgetPlayers['apostrophe-forms-google-address-field'] = function(el,
   var scriptSrc = 'https://maps.googleapis.com/maps/api/js?key=' + googleApiKey + '&libraries=places';
   var alreadyLoaded = document.querySelector('script[src="' + scriptSrc + '"]');
 
+  var input = el.querySelector('input[name=' + widget.fieldName + ']');
+
   if (!alreadyLoaded) {
     var googleScript = document.createElement('script');
     googleScript.setAttribute('src', scriptSrc);
     googleScript.onload = googleScriptLoaded;
     document.head.appendChild(googleScript);
+  } else {
+    googleScriptLoaded();
   }
 
   function googleScriptLoaded () {
-    var input = el.querySelector('input[name=' + widget.fieldName + ']');
     var google = window.google;
 
     var countries = widget.countries.map(function (countryObject) {
