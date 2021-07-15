@@ -12,7 +12,19 @@ module.exports = {
   },
 
   construct (self, options) {
-    self.on('apostrophe-pages:beforeSend', 'addGoogleApiKey');
+    const superLoad = self.load;
+    self.load = function(req, widgets, callback) {
+      return superLoad(req, widgets, function(err) {
+        if (err) {
+          return callback(err);
+        }
+
+        self.addGoogleApiKey(req);
+
+        return callback(null);
+      });
+    };
+
     self.addGoogleApiKey = function (req) {
       req.data.googleApiKey = options.googleApiKey;
     };
