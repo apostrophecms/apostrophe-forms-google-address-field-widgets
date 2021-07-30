@@ -2,7 +2,15 @@
 
 ## 4.0.0 (2021-07-30)
 
+### Breaks
+
+- Uses `self.load` instead of `beforeSend` to set the API key.
+
+### Fixes
 - Fixes large amount of google requests when typing an address
+
+### Adds
+
 - Allows to set splitted address parts fields editable or disabled
 
 ## 3.0.1 (2021-06-30)
