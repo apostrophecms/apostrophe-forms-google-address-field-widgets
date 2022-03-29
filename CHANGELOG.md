@@ -1,5 +1,11 @@
 # Versions
 
+## 4.1.0
+
+### Adds
+
+- Adds conditional field `isRequired` to splitted address parts. Adds a new data attribute on the input when required.
+
 ## 4.0.0 (2021-08-02)
 
 ### Breaks
