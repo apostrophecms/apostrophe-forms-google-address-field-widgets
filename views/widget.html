@@ -42,7 +42,7 @@
         id="{{ widget.fieldName }}-{{ addressPart }}"
         name="{{ widget.fieldName }}-{{ addressPart }}"
         {% if not widget.displaySplitAddress -%} style="display: none;" {%- endif %}
-        {% if infos.disabled -%} disabled {%- endif %}
+        {% if infos.disabled -%} disabled {%- endif -%}
       />
     {% endif %}
   {% endfor %}
