@@ -4,7 +4,7 @@
 
 ### Adds
 
-- Adds conditional field `isRequired` to splitted address parts. Adds a new data attribute on the input when required.
+- Adds conditional field `isRequired` to splitted address parts. Adds `required` on the input element when required.
 
 ## 4.0.0 (2021-08-02)
 
