@@ -37,7 +37,7 @@
       </label>
       <input class="apos-forms-input {{ classPrefix + '__input' if classPrefix }}"
         data-apos-forms-input-{{ addressPart }}
-        {% if infos.isRequired -%} data-apos-is-required {%- endif %}
+        {% if infos.isRequired -%} required {%- endif %}
         type="string"
         id="{{ widget.fieldName }}-{{ addressPart }}"
         name="{{ widget.fieldName }}-{{ addressPart }}"
